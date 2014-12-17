@@ -45,7 +45,7 @@ public class outStudentsTable extends HttpServlet {
 			ResultSet resultSet = statement.executeQuery(query);
 			printWriter.println("<HTML>");
 			printWriter.println("<BODY>");
-			printWriter.println("<LEFT>");
+			printWriter.println("<left>");
 			printWriter
 					.println("<table BORDER=1 CELLPADDING=0 CELLSPACING=0 WIDTH=50% >");
 			printWriter.println("<tr>");
