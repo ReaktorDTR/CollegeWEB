@@ -46,6 +46,34 @@ public class IOSQL {
 		}
 	}
 
+	public void updateGroup(String idGroup, String groupName) {
+		if (Validation.validate(groupName, Validation.GROUP_PATTERN)) {
+			if (Validation.validate(idGroup, Validation.ID_PATTERN)) {
+				try (Connection connection = new ConnectionConfiguration()
+						.getConnection();
+						Statement statement = connection.createStatement();) {
+					String query = "UPDATE groups SET groupName='"+groupName+"' WHERE idGroup=" + idGroup;
+					statement.executeUpdate(query);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public void removeGroup(String idGroup) {
+		if (Validation.validate(idGroup, Validation.ID_PATTERN)) {
+			try (Connection connection = new ConnectionConfiguration()
+					.getConnection();
+					Statement statement = connection.createStatement();) {
+				String query = "DELETE FROM groups WHERE idGroup=" + idGroup;
+				statement.executeUpdate(query);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public void addRating(Rating rating) {
 		try (Connection connection = new ConnectionConfiguration()
 				.getConnection();

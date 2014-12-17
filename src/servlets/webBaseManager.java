@@ -1,5 +1,6 @@
 package servlets;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -9,21 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import control.ioLocalStorage.ioType.IOSQL;
-import userInterface.Validation;
+import control.ioLocalStorage.IOLocalStorage;
+import database.LocalStorage;
 
 /**
- * Servlet implementation class updateGroup
+ * Servlet implementation class webBaseManager
  */
-@WebServlet("/updateGroup")
-public class updateGroup extends HttpServlet {
+@WebServlet("/webBaseManager")
+public class webBaseManager extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final String GROUP_PATTERN = "^[A-Z0-9][a-z0-9]+[ ]{0,1}[-]{0,1}([ ]{0,1}[A-Z0-9]{0,1}[a-z0-9]*)*$";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public updateGroup() {
+	public webBaseManager() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -32,22 +32,18 @@ public class updateGroup extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		LocalStorage localStorage = new LocalStorage();
+		IOLocalStorage ioLocalStorage = new IOLocalStorage();
+		// TODO Auto-generated method stub
+		PrintWriter pr = response.getWriter();
 		String job = (String) request.getParameter("job");
-		String idGroup = (String) request.getParameter("idGroup");
-		String groupName = (String) request.getParameter("groupName");
-		IOSQL iosql = new IOSQL();
-		if (job.equals("add")) {
-			iosql.addGroup(groupName);
-		} else if (job.equals("update")) {
-			iosql.updateGroup(idGroup, groupName);
-		} else if (job.equals("remove")) {
-			iosql.removeGroup(idGroup);
+		if (job.equals("From XML to SQL")) {
+			localStorage = ioLocalStorage.loadFromXMLFile("C:\\Users\\sdovhtc\\Documents\\EclipseProjects\\CollegeWEB\\WebContent\\database.xml");
+			ioLocalStorage.saveToSQL(localStorage);
 		}
-		
-		response.sendRedirect("/CollegeWEB/outGroupsTable");
+
 	}
 
 	/**
