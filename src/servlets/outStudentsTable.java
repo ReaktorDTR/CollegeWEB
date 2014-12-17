@@ -44,7 +44,6 @@ public class outStudentsTable extends HttpServlet {
 			String query = "SELECT students.idStudent, students.firstName, students.lastName, groups.groupName FROM students INNER JOIN groups ON students.idGroup = groups.idGroup";
 			ResultSet resultSet = statement.executeQuery(query);
 			printWriter.println("<HTML>");
-			// Start on the body
 			printWriter.println("<BODY>");
 			printWriter.println("<LEFT>");
 			printWriter
