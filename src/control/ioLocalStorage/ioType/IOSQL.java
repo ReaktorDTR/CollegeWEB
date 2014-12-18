@@ -66,7 +66,11 @@ public class IOSQL {
 			try (Connection connection = new ConnectionConfiguration()
 					.getConnection();
 					Statement statement = connection.createStatement();) {
-				String query = "DELETE FROM groups WHERE idGroup=" + idGroup;
+				String query = "DELETE ratings FROM ratings INNER JOIN students WHERE students.idStudent=ratings.idStudent AND students.idGroup="+idGroup;
+				statement.executeUpdate(query);
+				query = "DELETE FROM students WHERE students.idGroup="+idGroup;
+				statement.executeUpdate(query);
+				query = "DELETE FROM groups WHERE groups.idGroup="+idGroup;
 				statement.executeUpdate(query);
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -37,12 +37,12 @@ public class webBaseManager extends HttpServlet {
 		LocalStorage localStorage = new LocalStorage();
 		IOLocalStorage ioLocalStorage = new IOLocalStorage();
 		// TODO Auto-generated method stub
-		PrintWriter pr = response.getWriter();
 		String job = (String) request.getParameter("job");
 		if (job.equals("From XML to SQL")) {
 			localStorage = ioLocalStorage.loadFromXMLFile("C:\\Users\\sdovhtc\\Documents\\EclipseProjects\\CollegeWEB\\WebContent\\database.xml");
 			ioLocalStorage.saveToSQL(localStorage);
 		}
+		response.sendRedirect("/CollegeWEB/");
 
 	}
 

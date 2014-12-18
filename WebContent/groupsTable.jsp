@@ -19,18 +19,18 @@
 			<c:forEach var="group" items="${Groups}">
 				<tr>
 					<td>&nbsp;${group.idGroup}</td>
-					<td>&nbsp;${group.groupName}</td>
+					<td>&nbsp;<a href="/CollegeWEB/studentsTable.jsp?idGroup=${group.idGroup}">${group.groupName}</a></td>
 				</tr>
 			</c:forEach>
 			<tr>
 				<td><input type="text" name="idGroup"></td>
 				<td><input type="text" name="groupName"></td>
-				<td><input type="submit" value="Send" /></td>
 			</tr>
 		</table>
 		<input type="radio" name="job" value="add" checked> Add 
 		<input type="radio" name="job" value="update"> Update
 		<input type="radio" name="job" value="remove"> Remove
+		<input type="submit" value="Send" />
 	</form>
 </body>
 </html>
